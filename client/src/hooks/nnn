@@ -1,0 +1,65 @@
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+export default function useVoiceAssistant() {
+  const navigate = useNavigate();
+  const recognitionRef = useRef(null);
+  const [listening, setListening] = useState(false);
+
+  const speak = (text) => {
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = "en-US";
+    window.speechSynthesis.speak(msg);
+  };
+
+  useEffect(() => {
+    if (!SpeechRecognition) {
+      alert("Voice assistant not supported in this browser");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.lang = "en-US";
+    recognitionRef.current = recognition;
+
+    recognition.onresult = (event) => {
+      const command =
+        event.results[event.results.length - 1][0].transcript
+          .toLowerCase()
+          .trim();
+
+      console.log("Voice Command:", command);
+
+      if (command.includes("book appointment")) {
+        speak("Opening appointment booking");
+        navigate("/appointments/book");
+      } else if (command.includes("show appointments")) {
+        speak("Here are your appointments");
+        navigate("/appointments");
+      } else if (command.includes("dashboard")) {
+        speak("Going to dashboard");
+        navigate("/");
+      }
+    };
+
+    return () => recognition.stop();
+  }, [navigate]);
+
+  const startListening = () => {
+    recognitionRef.current.start();
+    setListening(true);
+    speak("Voice assistant activated");
+  };
+
+  const stopListening = () => {
+    recognitionRef.current.stop();
+    setListening(false);
+    speak("Voice assistant deactivated");
+  };
+
+  return { startListening, stopListening, listening };
+}

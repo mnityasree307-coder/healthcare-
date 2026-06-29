@@ -1,0 +1,24 @@
+/* Reuse the same modal styles */
+@import './BookAppointmentModal.css';
+
+.form-group small {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.form-note {
+  background-color: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #78350f;
+  margin-top: 16px;
+}
+
+.form-note strong {
+  color: #92400e;
+}
