@@ -1,6 +1,8 @@
 # healthcare-
 Healthcare+ is a healthcare management application that centralizes all patient medical reports in one place, enabling users to securely access health records, manage appointments, and organize healthcare information through a simple and user-friendly interface.
+
  Features
+ 
 🔐 Authentication System
 User Registration (Name, Email, Password)
 Secure Login with token-based authentication
@@ -8,6 +10,7 @@ Persistent login using localStorage
 Logout with session cleanup
 Protected routes (unauthorized users redirected to login)
 Demo account for quick testing
+
 🛠️ Tech Stack
 Frontend
 React.js
@@ -21,6 +24,7 @@ Express.js
 JWT Authentication (planned)
 MongoDB integration (datbase)
 Password hashing with bcrypt (planned)
+
 📂 Project Structure
 health-application
 ├── client        # Frontend (React)
@@ -31,6 +35,7 @@ Use the following credentials to test the application:
 
 Email: demo@healthcare.com
 Password: demo123
+
 ⚙️ Installation & Setup
 1️⃣ Clone the repository
 git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
@@ -45,6 +50,7 @@ npm install
 npm start
 App runs at:
 👉 http://localhost:3000
+
 
 🔒 Security Notes
 This version is built for development/demo purposes.
